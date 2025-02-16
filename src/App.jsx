@@ -1,52 +1,19 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Posts from "./pages/Posts";
-import "./App.css";
-
-function Layout({ children }) {
-  return (
-    <div>
-      <nav className="navbar">
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="/about"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Chi Siamo
-        </NavLink>
-        <NavLink
-          to="/posts"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Post
-        </NavLink>
-      </nav>
-      <main>{children}</main>
-    </div>
-  );
-}
+import About from "./pages/About";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/posts" element={<Posts />} />
-        </Routes>
-      </Layout>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/posts" component={Posts} />
+        <Route path="/about" component={About} />
+      </Switch>
     </Router>
   );
 }
