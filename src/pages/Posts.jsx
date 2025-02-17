@@ -1,27 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+const posts = [
+  {
+    id: 1,
+    title: "La ricetta perfetta per una torta",
+    content: "Ecco come fare una torta perfetta...",
+  },
+  {
+    id: 2,
+    title: "I biscotti che non puoi perdere",
+    content: "Scopri la nostra ricetta per biscotti croccanti...",
+  },
+  {
+    id: 3,
+    title: "La macedonia estiva",
+    content: "Un mix fresco e sano di frutta di stagione...",
+  },
+];
 
 const Posts = () => {
   return (
     <div>
       <h1>Lista dei Post</h1>
       <ul>
-        <li>
-          <h2>Post 1: La ricetta perfetta per una torta</h2>
-          <p>
-            Scopri come fare una torta al cioccolato perfetta per ogni
-            occasione.
-          </p>
-        </li>
-        <li>
-          <h2>Post 2: I biscotti che non puoi perdere</h2>
-          <p>
-            Segui la nostra ricetta per preparare biscotti al burro croccanti.
-          </p>
-        </li>
-        <li>
-          <h2>Post 3: La macedonia estiva</h2>
-          <p>Un mix fresco e sano di frutta di stagione per l'estate.</p>
-        </li>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
